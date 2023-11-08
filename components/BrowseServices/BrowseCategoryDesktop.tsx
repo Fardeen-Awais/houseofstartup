@@ -19,7 +19,7 @@ const BrowseCategoryDesktop = () => {
     
     return (
         
-        <Tabs defaultValue={'account'} className='sm:flex hidden bg-white dark:bg-gray-900 min-h-screen rounded-xl bg-opacity-80 backdrop-blur-[4px] backdrop-filter transition-opacity border-2 border-green-500 dark:border-green-300  browserborder shadow-lg mx-3'>
+        <Tabs defaultValue={'account'} className='sm:flex hidden bg-white dark:bg-gray-900 min-h-screen rounded-xl bg-opacity-80 backdrop-blur-[4px] backdrop-filter transition-opacity green_border mx-3'>
             <div className='flex flex-col border border-transparent border-r-gray-300 w-[300px]  '>
                 <div className='flex flex-col max-w-lg px-8'>
                     <h2>Browse our catalog of agencies.</h2>

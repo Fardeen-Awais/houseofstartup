@@ -11,13 +11,13 @@ const CustomerFeedback = () => {
             <div>
                 <Image src={'/customers-avatars.webp'} className='w-40 h-20 flex justify-center items-center mx-auto' alt="feedback" width={1000} height={1000} loading="eager" />
                 <div className='flex flex-col gap-x-40 max-w-xl text-center'>
-                    <h2>Why our customers enjoy Sortlist.</h2>
+                    <h2 className='black_text_gradient'>Why our customers enjoy Sortlist.</h2>
                     <p>We help them make the right decision with confidence.</p>
                 </div>
             </div>
 
             <div className='grid grid-cols-1 sm:grid-cols-2  gap-5'>
-                <Card className="max-w-lg cursor-pointer hover:scale-105 hover:opacity-100  bg-[#fbf2ef] dark:bg-default-50 p-5" >
+                <Card className="max-w-lg cursor-pointer hover:scale-105 hover:opacity-100 dark_border dark:bg-default-50 p-5" >
                     <CardHeader className='flex flex-col justify-start items-start'>
                         <h3> The best of data & AI </h3>
                         <p className='max-w-xl'> Our accurate market data helps them make the most informed decision possible to find the providers that suit them best. </p>
@@ -31,7 +31,7 @@ const CustomerFeedback = () => {
                     </CardFooter>
                 </Card>
 
-                <Card className="max-w-lg cursor-pointer hover:scale-105 hover:opacity-100  dark:bg-teal- p-5 ">
+                <Card className="max-w-lg cursor-pointer hover:scale-105 hover:opacity-100  dark:bg-teal- p-5 light_border">
                     <CardHeader className='flex flex-col justify-start items-start'>
                         <h3> The best of data & AI </h3>
                         <p className='max-w-sm'> Our accurate market data helps them make the most informed decision possible to find the providers that suit them best. </p>
@@ -45,7 +45,7 @@ const CustomerFeedback = () => {
                     </CardFooter>
                 </Card>
 
-                <Card className="max-w-lg cursor-pointer hover:scale-105 hover:opacity-100 dark:bg-teal- p-5 ">
+                <Card className="max-w-lg cursor-pointer hover:scale-105 hover:opacity-100 dark:bg-teal- p-5 light_border">
                     <CardHeader className='flex flex-col justify-start items-start'>
                         <h3> The best of data & AI </h3>
                         <p className='max-w-sm'> Our accurate market data helps them make the most informed decision possible to find the providers that suit them best. </p>
@@ -60,7 +60,7 @@ const CustomerFeedback = () => {
                     </CardFooter>
                 </Card>
 
-                <Card className="max-w-lg cursor-pointer hover:scale-105 hover:opacity-100  bg-[#fbf2ef] dark:bg-default-50 p-5" >
+                <Card className="max-w-lg cursor-pointer hover:scale-105 hover:opacity-100 dark_border dark:bg-default-50 p-5" >
                     <CardHeader className='flex flex-col justify-start items-start'>
                         <h3> The best of data & AI </h3>
                         <p className='max-w-xl'> Our accurate market data helps them make the most informed decision possible to find the providers that suit them best. </p>
@@ -76,11 +76,11 @@ const CustomerFeedback = () => {
                 </Card>
             </div>
 
-            <Card className="w-full max-w-[1050px] cursor-pointer hover:scale-105 hover:opacity-100  bg-white  dark:bg-default-50 sm:p-1" >
+            <Card className="w-full max-w-[1050px] cursor-pointer hover:scale-105 hover:opacity-100 bg-white dark:bg-default-50 sm:p-1 dark_border" >
                 <CardBody className='flex justify-center items-center text-center mx-auto gap-10'>
                     <h3 className='text-2xl'>Ready to take your business to the next level?</h3>
                     <div className='flex justify-center items-center gap-5'>
-                        <Button className='bg-blue-600 '>Post a Project</Button>
+                        <Button className='action_button dark:hover:text-black'>Post a Project</Button>
                         Or
                         <Button className='' variant={'outline'}>Explore Us</Button>
                     </div>

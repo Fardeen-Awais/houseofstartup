@@ -12,11 +12,11 @@ const Hero = () => {
        className='flex flex-col sm:flex-row justify-evenly sm:justify-between items-center max-w-7xl mx-auto p-5 sm:p-10 gap-10 min-h-screen w-full'>
       <div className='flex flex-col gap-6'>
         <div>
-          <h1 className='max-w-md sm:max-w-3xl'><Highlighter color={`${checker === 'dark' ? 'green' : 'lightgreen'}`}  type="highlight" >Web Agency</Highlighter> for Developing Buisness</h1>
+          <h1 className='max-w-md sm:max-w-3xl '><Highlighter color={`${checker === 'dark' ? 'green' : 'lightgreen'}`}  type="highlight" >Web Agency</Highlighter> for Developing Buisness</h1>
           <p className='max-w-md'>Make your Business Web application with our best developers. Helping Businesses to get their website application with security.</p>
         </div>
         <div className='flex gap-x-5'>
-          <Button>Get Started</Button>
+          <Button className='action_button dark:hover:text-black'>Get Started</Button>
           <Button variant="outline">Explore Us</Button> {/* redirect to work:: that explain how we work  */}
         </div>
       </div>

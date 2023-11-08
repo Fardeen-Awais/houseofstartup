@@ -9,6 +9,7 @@ import { ModeToggle } from './Theme'
 import Logo from './Logo'
 import { SignInButton, UserButton } from '@clerk/nextjs'
 import { useUser } from '@clerk/nextjs'
+import { Button } from './button'
 const Navbar = () => {
 
   const { isSignedIn } = useUser();
@@ -63,7 +64,7 @@ const Navbar = () => {
           </div>
           <div>
       <div className="hidden sm:flex">
-        {!isSignedIn && <SignInButton />}
+        {!isSignedIn && <SignInButton><Button>SignIn</Button></SignInButton>}
       </div>
     
         {isSignedIn && (

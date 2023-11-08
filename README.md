@@ -39,20 +39,23 @@ Todo: Auth completed with activating some public route
         - Changing the progress Bar []
     - Services [x]
     - How we work [x]
-    - Why our customer enjoy []
-    - Blog section []
-    - Testimonials []
-    - Get started or Price []
-    - Footer []
+    - Why our customer enjoy [x]
+    - Blog section [] (later)
+    - Testimonials [] // tweets slider
+    - Footer [x]
     - Liveblock cursor collab [] (optional)
 - Services []
     - Will display price of every service
-- Our Work []
 - Store []
 - Resources []
-- Job []
+    - Job [] 
+    - Blog
+    - Cheatsheets
+    - Ebooks
 - Hidden Contact us (hum nai quiz k badh contact us mai lekr jana hai) []
 - Rive Animations []
+
+TODO: Mujhay sab se pehlay services wala section chor kr get started k badh wala aur blog section complete krna hoga takay mai mdx mai sara hath set krlu
 
 ### Commit details
 

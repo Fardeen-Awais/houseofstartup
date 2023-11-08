@@ -16,7 +16,7 @@ const Footer = () => (
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 place-items-center mx-auto justify-items-center gap-x-10">
         {footerLinks.map((item) => (
-          <div key={item.title} className="footer__link">
+          <div key={item.title} className="flex flex-col gap-6 text-base ">
             <h3 className="font-bold">{item.title}</h3>
             <div className="flex flex-col gap-5">
               {item.links.map((link) => (
@@ -36,7 +36,7 @@ const Footer = () => (
     <div className='flex justify-between items-center flex-wrap mt-10 border-t border-gray-100 sm:px-16 px-6 py-10'>
       <p>@2023 Alfarnex. All rights reserved</p>
 
-      <div className="footer__copyrights-link">
+      <div className="flex-1 flex sm:justify-end justify-center max-sm:mt-4 gap-10;">
         <Link href="/" >
           Privacy & Policy
         </Link>
