@@ -2,12 +2,10 @@
 import React from 'react'
 import WebVitals from "./subcomponents/webvitals";
 import Highlighter from '@/hook/Highligher';
-import { themeChecker } from '@/hook/global-state';
 import { RoughNotationGroup } from 'react-rough-notation';
 import styles from '../styles/Storyline.module.css'
 
 const Storyline01 = () => {
-  const checker = themeChecker()
   return (
     <div className='flex flex-col gap-8 max-w-7xl justify-center items-center min-h-screen px-5 '>
       <div className='flex flex-col justify-center items-center max-w-xl text-center'>
