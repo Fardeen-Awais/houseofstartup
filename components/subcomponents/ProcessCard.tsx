@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import {Card, CardBody} from "@nextui-org/react";
-import { cn } from '@/hook/utils';
+import { cn } from '@/lib/utils';
 
 const ProcessCard = () => {
   return (

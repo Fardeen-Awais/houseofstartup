@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import WebVitals from "./subcomponents/webvitals";
-import Highlighter from '@/hook/Highligher';
+import Highlighter from '@/lib/Highligher';
 import { RoughNotationGroup } from 'react-rough-notation';
 import styles from '../styles/Storyline.module.css'
 

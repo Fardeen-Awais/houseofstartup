@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
-import { cn } from '@/hook/utils'
+import { cn } from '@/lib/utils'
 import { Button } from './ui/button';
 
 const CustomerFeedback = () => {
