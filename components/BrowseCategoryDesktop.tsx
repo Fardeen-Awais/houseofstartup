@@ -15,7 +15,7 @@ interface CategoryProps {
             id: string;
             name: string;
             desc: string | null;
-            categoryId: string | null;
+            categoryId: any
         }[];
     }[];
 }
