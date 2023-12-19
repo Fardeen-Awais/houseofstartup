@@ -9,16 +9,29 @@ import { Tabs } from '@radix-ui/react-tabs'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet'
 import { Button } from './ui/button'
 
-const BrowseCategoryMobile = () => {
+interface CategoryProps {
+    category: {
+        id: string;
+        name: string;
+        services: {
+            id: string;
+            name: string;
+            desc: string | null;
+            categoryId: string | null;
+        }[];
+    }[];
+}
+
+const BrowseCategoryMobile = ({ category }: CategoryProps) => {
     const [isMounted, setIsMounted] = useState(false) // By setting isMounted to false initially and then setting it to true in the useEffect hook, the component returns null if it hasn't been mounted yet. This ensures that the component is not rendered on the server and avoids the hydration error. Once the component is mounted on the client, it will be rendered as usual.
     useEffect(() => {
         setIsMounted(true)
-      }, [])
+    }, [])
 
-      if (!isMounted) {
+    if (!isMounted) {
         return null;
-      }
-      
+    }
+
     return (
         <Tabs defaultValue={'account'} className='sm:hidden flex bg-white dark:bg-gray-900 min-h-screen rounded-xl bg-opacity-80 backdrop-blur-[4px] backdrop-filter transition-opacity border-2 border-green-500 dark:border-green-300  browserborder shadow-lg'>
             <div className='flex flex-col border border-transparent border-r-gray-300 w-[300px]  '>
@@ -29,66 +42,40 @@ const BrowseCategoryMobile = () => {
                 <Separator className='my-10 mx-auto w-60' />
                 <div className='flex flex-col justify-start items-start mx-5'>
                     <TabsList className='flex flex-col bg-transparent h-40 '>
-                        <Sheet >
-                            <ScrollArea className='h-full w-64 px-5 gap-5'>
-                                <SheetTrigger>
-                                    <TabsTrigger className='gap-5 py-4 opacity-90 w-52' value="account">
-                                        <HomeIcon /> Zabardast 🎯 <BiLeftArrow />
-                                    </TabsTrigger>
-                                    <TabsTrigger className='gap-5 py-4 opacity-90 w-52' value="password">
-                                        <HomeIcon /> Get started 🎯 <BiLeftArrow />
-                                    </TabsTrigger>
-                                    <TabsTrigger className='gap-5 py-4 opacity-90 w-52' value="power">
-                                        <HomeIcon /> Get started 🎯 <BiLeftArrow />
-                                    </TabsTrigger>
-                                </SheetTrigger>
-                            </ScrollArea>
+                        {category.map((category, index) => (
+                            <Sheet >
+                                <ScrollArea className='h-full w-64 px-5 gap-5'>
+                                    <SheetTrigger>
+                                        <TabsTrigger className='flex items-start justify-start gap-5 py-4 opacity-90 w-52' value={category.id}>
+                                            <p className='text-start'> {category.name} 🎯</p>
+                                        </TabsTrigger>
+                                    </SheetTrigger>
+                                </ScrollArea>
 
-                            <SheetContent side={'bottom'} className="w-full flex flex-col h-screen mx-auto ">
-                                <SheetHeader>
-                                    <SheetTitle>Software Developement</SheetTitle>
-                                </SheetHeader>
-                                {/* Part2 */}
-                                <SheetDescription>
-                                    <ScrollArea className='flex h-[350px] w-[220px] justify-center items-center mx-auto p-5'>
-                                        <TabsContent className='flex flex-col gap-10 items-center justify-center ' value="account">
-                                            <Button className='p-6'>
-                                                Web Developement
-                                            </Button>
-                                            <Button className='p-6'>
-                                                Web Developement
-                                            </Button>
-                                            <Button className='p-6'>
-                                                Web Developement
-                                            </Button>
-                                            <Button className='p-6'>
-                                                Web Developement
-                                            </Button>
-                                            <Button className='p-6'>
-                                                Web Developement
-                                            </Button>
-                                            <Button className='p-6'>
-                                                Web Developement
-                                            </Button>
-                                            <Button className='p-6'>
-                                                Web Developement
-                                            </Button>
-                                            <Button className='p-6'>
-                                                Web Developement
-                                            </Button>
-                                            <Button className='p-6'>
-                                                Web Developement
-                                            </Button>
-                                        </TabsContent>
-                                        <TabsContent value="password">Change your password here.</TabsContent>
-                                    </ScrollArea>
-                                </SheetDescription>
-                            </SheetContent>
-                        </Sheet>
+
+                                <SheetContent side={'bottom'} className="w-full flex flex-col h-screen mx-auto ">
+                                    <SheetHeader>
+                                        <SheetTitle>{category.name}</SheetTitle>
+                                    </SheetHeader>
+                                    <SheetDescription>
+                                        <ScrollArea className='flex h-[400px] w-[320px] justify-center items-center mx-auto p-5'>
+                                            <div>
+                                                {category.services.map((service) => (
+                                                    <TabsContent key={service.id} className='flex flex-col gap-y-10 items-center justify-center' value={service.categoryId}>
+                                                        <Button variant={'outline'} className='w-full p-20'>{service.name}</Button>
+                                                    </TabsContent>
+                                                ))}
+                                            </div>
+                                        </ScrollArea>
+                                    </SheetDescription>
+                                </SheetContent>
+                            </Sheet>
+
+                        ))}
                     </TabsList>
                 </div>
             </div>
-        </Tabs>
+        </Tabs >
     )
 }
 

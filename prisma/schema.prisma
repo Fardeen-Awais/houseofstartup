@@ -32,11 +32,11 @@ model Service{
   id String @id @default(uuid())
   name String
   desc String? @db.Text
-  categoryName String?
-  category Category? @relation(fields: [categoryName], references: [id])
+  categoryId String?
+  category Category? @relation(fields: [categoryId], references: [id])
   userSurveys UserSurvey[]
 
-  @@index([categoryName])
+  @@index([categoryId])
 }
 
 model UserSurvey{
