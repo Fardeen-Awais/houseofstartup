@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import ProcessCard from './subcomponents/ProcessCard'
+import ProcessCard from '../../../components/ProcessCard'
 
 
 const Process = () => {

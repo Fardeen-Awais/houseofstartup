@@ -1,9 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { Separator } from '../ui/separator'
-import { ScrollArea } from '../ui/scroll-area'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
-import { Button } from '../ui/button'
+import { Separator } from './ui/separator'
+import { ScrollArea } from './ui/scroll-area'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
+import { Button } from './ui/button'
 import { HomeIcon } from 'lucide-react'
 import { BiLeftArrow } from 'react-icons/bi'
 

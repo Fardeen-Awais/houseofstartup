@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import WebVitals from "./subcomponents/webvitals";
+import WebVitals from "./webvitals";
 import Highlighter from '@/lib/Highligher';
 
 

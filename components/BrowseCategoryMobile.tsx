@@ -1,13 +1,13 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { Separator } from '../ui/separator'
-import { TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
-import { ScrollArea } from '../ui/scroll-area'
+import { Separator } from './ui/separator'
+import { TabsContent, TabsList, TabsTrigger } from './ui/tabs'
+import { ScrollArea } from './ui/scroll-area'
 import { HomeIcon } from 'lucide-react'
 import { BiLeftArrow } from 'react-icons/bi'
 import { Tabs } from '@radix-ui/react-tabs'
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
-import { Button } from '../ui/button'
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet'
+import { Button } from './ui/button'
 
 const BrowseCategoryMobile = () => {
     const [isMounted, setIsMounted] = useState(false) // By setting isMounted to false initially and then setting it to true in the useEffect hook, the component returns null if it hasn't been mounted yet. This ensures that the component is not rendered on the server and avoids the hydration error. Once the component is mounted on the client, it will be rendered as usual.

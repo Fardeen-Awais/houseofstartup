@@ -9,7 +9,7 @@ import { ModeToggle } from './Theme'
 import Logo from './Logo'
 import { SignInButton, UserButton } from '@clerk/nextjs'
 import { useUser } from '@clerk/nextjs'
-import { Button } from './button'
+import { Button } from './ui/button'
 const Navbar = () => {
 
   const { isSignedIn } = useUser();

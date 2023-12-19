@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Card } from '../ui/card'
+import { Card } from './ui/card'
 import { CardBody } from '@nextui-org/react'
 
 const FeedbackCard = () => {

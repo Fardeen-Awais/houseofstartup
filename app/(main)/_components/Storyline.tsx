@@ -1,6 +1,6 @@
 import React from 'react'
-import Storyline01 from './Str01'
-import Storyline02 from './Str02'
+import Storyline01 from '../../../components/Str01'
+import Storyline02 from '../../../components/Str02'
 
 const Storyline = () => {
   return (

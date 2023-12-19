@@ -1,6 +1,6 @@
 import React from 'react';
-import BrowseCategoryDesktop from './BrowseServices/BrowseCategoryDesktop';
-import BrowseCategoryMobile from './BrowseServices/BrowseCategoryMobile';
+import BrowseCategoryDesktop from '../../../components/BrowseCategoryDesktop';
+import BrowseCategoryMobile from '../../../components/BrowseCategoryMobile';
 
 
 const Service = () => {

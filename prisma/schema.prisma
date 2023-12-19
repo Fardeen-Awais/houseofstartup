@@ -8,6 +8,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model Profile{
@@ -16,7 +17,6 @@ model Profile{
   name String
   email String
   imageUrl String @db.Text
-  userSurvey UserSurvey[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -24,7 +24,7 @@ model Profile{
 
 model Category{
   id String @id @default(uuid())
-  name String
+  name String @unique
   services Service[]
 }
 
@@ -34,6 +34,9 @@ model Service{
   desc String? @db.Text
   categoryName String?
   category Category? @relation(fields: [categoryName], references: [id])
+  userSurveys UserSurvey[]
+
+  @@index([categoryName])
 }
 
 model UserSurvey{
@@ -43,6 +46,10 @@ model UserSurvey{
   business String
   website String
   projectType String
-  profile Profile  @relation(fields: [id], references: [id],onDelete: Cascade)
+  
+  serviceId String?
+  service Service? @relation(fields: [serviceId], references: [id])
+
+  @@index([serviceId])
 }
 

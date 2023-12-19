@@ -3,19 +3,19 @@ import { currentUser, redirectToSignIn } from "@clerk/nextjs";
 import { db } from "./db";
 
 
-export const intialProfile = async()=> {
+export const homeProfile = async()=> {
     // Get the current user
     const user = await currentUser();
 
     // If there is no user, redirect to sign in
-    if(!user){
-        return redirectToSignIn();
+    if(!user ){
+        return null
     }
 
     // Check if the user's profile already exists in the database
     const profile = await db.profile.findUnique({
         where: {
-            userId: user.id
+            userId: user?.id
         }
     });
 
