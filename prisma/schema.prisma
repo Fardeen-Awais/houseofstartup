@@ -44,7 +44,7 @@ model UserSurvey{
   location String
   budget Int
   business String
-  website Boolean
+  website String
   projectType String
   
   serviceId String?
