@@ -62,8 +62,34 @@ export const footerLinks = [
     ],
   },
 ];
-
-
+export const projectTypes = [
+  { label: "Hourly Rates", value: "hourly_rates" },
+  { label: "Daily Rates", value: "daily_rates" },
+  { label: "Weekly Rates", value: "weekly_rates" },
+  { label: "Monthly Retainers", value: "monthly_retainers" },
+  { label: "Fixed-Fee Projects", value: "fixed_fee_projects" },
+  { label: "Value-Based Projects", value: "value_based_projects" },
+  { label: "Commision Based Projects", value: "commision_based_projects" },
+  { label: "Others / Negotiate to decide", value: "other" },
+]
+export const budget = [
+  { label: "Less than 500$", value: 500 },
+  { label: "500$ - 2000$", value: 2000 },
+  { label: "2000$ - 10,000$", value: 10000 },
+  { label: "Custom Budget", value: 0 },
+];
+export const businessTypes = [
+  { label: "E-commerce", value: "e-commerce" },
+  { label: "Restaurant or Food Service", value: "restaurant" },
+  { label: "Professional Services", value: "professional_services" },
+  { label: "Healthcare", value: "healthcare" },
+  { label: "Technology or Software", value: "technology" },
+  { label: "Real Estate", value: "real_estate" },
+  { label: "Finicial Services ", value: "finiance" },
+  { label: "Education", value: "education" },
+  { label: "Nonprofit or Charity", value: "nonprofit" },
+  { label: "Other", value: "other" },
+];
 export const countries = [
   { name: 'Afghanistan', code: 'af' },
   { name: 'Albania', code: 'al' },
@@ -307,3 +333,4 @@ export const countries = [
   { name: 'Zambia', code: 'zm' },
   { name: 'Zimbabwe', code: 'zw' },
 ];
+

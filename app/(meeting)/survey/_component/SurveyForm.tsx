@@ -16,11 +16,12 @@ import {
 import { Autocomplete, AutocompleteItem, Avatar, Input, Progress } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { countries } from '@/constant';
+import { budget, businessTypes, countries, projectTypes } from '@/constant';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const formSchema = z.object({
     location: z.string().min(2).max(50),
-    budget: z.number().min(1).max(Infinity),
+    budget: z.coerce.number().min(0).max(20000),
     businessType: z.string().min(2).max(50),
     projectType: z.string().min(2).max(50),
     website: z.string().min(2).max(50),
@@ -37,7 +38,7 @@ const SurveyForm = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             location: '',
-            budget: undefined,
+            budget: 0,
             businessType: '',
             projectType: '',
             website: ''
@@ -56,7 +57,7 @@ const SurveyForm = () => {
             <div className='flex flex-col max-w-xl gap-5'>
                 <div className='flex flex-col w-full'>
                     <p>Progress {submittedFields}/{requiredFields}</p>
-                    <Progress color="danger" aria-label="Loading..." value={submitionRate} />
+                    <Progress color={submitionRate === 100 ? 'success' : 'warning'} aria-label="Loading..." value={submitionRate} />
                 </div>
                 {/* {submittedFields === 0 && ( */}
                 <div className='flex flex-col max-w-sm'>
@@ -76,7 +77,7 @@ const SurveyForm = () => {
                                     <FormItem className='flex flex-col w-full'>
                                         <FormLabel className='text-lg'>Do you already have an website?</FormLabel>
                                         <FormControl>
-                                            {/* <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                 <FormControl>
                                                     <SelectTrigger>
                                                         <SelectValue placeholder="Select an Option" />
@@ -86,7 +87,7 @@ const SurveyForm = () => {
                                                     <SelectItem value={'yes'}>Yes, I alrady have</SelectItem>
                                                     <SelectItem value={'no'}>No, I want to make it from scratch</SelectItem>
                                                 </SelectContent>
-                                            </Select> */}
+                                            </Select>
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -99,7 +100,6 @@ const SurveyForm = () => {
                                 name="location"
                                 render={({ field }) => (
                                     <FormItem>
-                                        {/* <FormLabel>Which country you are from</FormLabel> */}
                                         <FormControl>
                                             <Autocomplete
                                                 label="Which country you are from"
@@ -107,6 +107,7 @@ const SurveyForm = () => {
                                                 className="max-w-xs"
                                                 onSelectionChange={field.onChange}
                                                 defaultItems={countries}
+                                                datatype='number'
                                             >
                                                 {countries.map((country) => (
                                                     <AutocompleteItem
@@ -131,9 +132,23 @@ const SurveyForm = () => {
                                 name="budget"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Tell me about your estimated budget</FormLabel>
                                         <FormControl>
-                                            <Input type='number' {...field} />
+                                            <Autocomplete
+                                                label="Tell me about your estimated budget"
+                                                variant='underlined'
+                                                className="max-w-xs"
+                                                onSelectionChange={field.onChange}
+                                                defaultItems={budget}
+                                            >
+                                                {budget.map((budgets) => (
+                                                    <AutocompleteItem
+                                                        key={budgets.value}
+                                                        value={budgets.value}
+                                                    >
+                                                        {budgets.label}
+                                                    </AutocompleteItem>
+                                                ))}
+                                            </Autocomplete>
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -146,9 +161,22 @@ const SurveyForm = () => {
                                 name="businessType"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Select your business type</FormLabel>
+                                        <FormLabel>Select your Business type</FormLabel>
                                         <FormControl>
-                                            <Input {...field} />
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select an Option" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    {businessTypes.map((type) => (
+                                                        <SelectItem key={type.value} value={type.value}>
+                                                            {type.label}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -161,9 +189,23 @@ const SurveyForm = () => {
                                 name="projectType"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Select your project type</FormLabel>
                                         <FormControl>
-                                            <Input {...field} />
+                                            <Autocomplete
+                                                label="Select your project type"
+                                                variant='underlined'
+                                                className="max-w-xs"
+                                                onSelectionChange={field.onChange}
+                                                defaultItems={projectTypes}
+                                            >
+                                                {projectTypes.map((project) => (
+                                                    <AutocompleteItem
+                                                        key={project.value}
+                                                        value={project.value}
+                                                    >
+                                                        {project.label}
+                                                    </AutocompleteItem>
+                                                ))}
+                                            </Autocomplete>
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -183,19 +225,20 @@ const SurveyForm = () => {
                         )}
                         {submittedFields === requiredFields && (
                             <div className='flex flex-col gap-2'>
-                                <Button className='border-2 border-green-500 hover:border-blue-500 transition-all' type="submit" onClick={() => onSubmit(form.getValues())}>
-                                    Submit
-                                </Button>
                                 <Button
                                     className='w-full'
                                     type="button"
-                                    variant={'secondary'}
+                                    variant={'outline'}
                                     onClick={() => {
                                         setSubmitField(submittedFields - submittedFields);
                                     }}
                                 >
                                     Back
                                 </Button>
+                                <Button className='border-2 border-green-500 hover:border-blue-500 transition-all' type="submit" onClick={() => onSubmit(form.getValues())}>
+                                    Submit
+                                </Button>
+
                             </div>
                         )}
                     </form>
