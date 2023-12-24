@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
 import { Button } from './ui/button'
 import { HomeIcon } from 'lucide-react'
 import { BiLeftArrow } from 'react-icons/bi'
+import Link from 'next/link'
 
 interface CategoryProps {
     category: {
@@ -56,7 +57,7 @@ const BrowseCategoryDesktop = ({ category }: CategoryProps) => {
                     <div className='flex flex-col justify-center items-center py-10 px-3 mx-auto'>
                         {category.services.map((service) => (
                             <TabsContent className='flex flex-col gap-y-10 items-center justify-center' value={service.categoryId}>
-                               <Button variant={'outline'} className='w-full p-20'>{service.name}</Button>
+                               <Link href={`/survey/${service.name}`}><Button variant={'outline'} className='w-full p-20'>{service.name}</Button></Link>
                             </TabsContent>
                         ))}
                     </div>

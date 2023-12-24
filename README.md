@@ -1,4 +1,4 @@
-# Alfarnex project
+# Startup project
 
 ## Getting Started
 Get started commit of alfarnex startup agency website
@@ -22,7 +22,8 @@ Todo: Auth completed with activating some public route
     ShadCdn - A UI library
     React-icon - Best icons library [https://react-icons.github.io/react-icons/icons?name=di]
     Supabase or PostgresSQl with Neon
-
+    Nextui 
+    
 ### Objectives 
 
 - Home page []

@@ -1,7 +1,8 @@
 import React from 'react'
-import SurveyForm from './_component/SurveyForm';
+import SurveyForm from '../_component/SurveyForm';
 
-const page = () => {
+const page = ({ params }: { params: { slug: string } }) => {
+  const userSelectedService = params.slug.replace(/%20/g, ' ');
 
   return (
     <div className='flex flex-col min-h-screen justify-center items-center max-w-7xl mx-auto gap-5 p-5'>
