@@ -12,16 +12,11 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
-import { Input, Progress } from '@nextui-org/react';
+
+import { Autocomplete, AutocompleteItem, Avatar, Input, Progress } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { countries } from '@/constant';
 
 const formSchema = z.object({
     location: z.string().min(2).max(50),
@@ -70,10 +65,6 @@ const SurveyForm = () => {
                 </div>
                 {/* )} */}
             </div>
-
-            {IsSubmitted && (
-                <div>Congratulation you Submitted the form 🎉🍾🎊</div>
-            )}
             <div className='flex w-full'>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-8 w-full">
@@ -85,7 +76,7 @@ const SurveyForm = () => {
                                     <FormItem className='flex flex-col w-full'>
                                         <FormLabel className='text-lg'>Do you already have an website?</FormLabel>
                                         <FormControl>
-                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            {/* <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                 <FormControl>
                                                     <SelectTrigger>
                                                         <SelectValue placeholder="Select an Option" />
@@ -95,7 +86,7 @@ const SurveyForm = () => {
                                                     <SelectItem value={'yes'}>Yes, I alrady have</SelectItem>
                                                     <SelectItem value={'no'}>No, I want to make it from scratch</SelectItem>
                                                 </SelectContent>
-                                            </Select>
+                                            </Select> */}
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -108,9 +99,25 @@ const SurveyForm = () => {
                                 name="location"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Which country you are from</FormLabel>
+                                        {/* <FormLabel>Which country you are from</FormLabel> */}
                                         <FormControl>
-                                            <Input placeholder="@email" {...field} />
+                                            <Autocomplete
+                                                label="Which country you are from"
+                                                variant='underlined'
+                                                className="max-w-xs"
+                                                onSelectionChange={field.onChange}
+                                                defaultItems={countries}
+                                            >
+                                                {countries.map((country) => (
+                                                    <AutocompleteItem
+                                                        key={country.name}
+                                                        value={country.name}
+                                                        startContent={<Avatar alt={country.code} className="w-6 h-6" src={`https://flagcdn.com/${country.code}.svg`} />}
+                                                    >
+                                                        {country.name}
+                                                    </AutocompleteItem>
+                                                ))}
+                                            </Autocomplete>
                                         </FormControl>
 
                                         <FormMessage />
@@ -118,7 +125,7 @@ const SurveyForm = () => {
                                 )}
                             />
                         )}
-                        {/* {submittedFields === 2 && (
+                        {submittedFields === 2 && (
                             <FormField
                                 control={form.control}
                                 name="budget"
@@ -126,13 +133,13 @@ const SurveyForm = () => {
                                     <FormItem>
                                         <FormLabel>Tell me about your estimated budget</FormLabel>
                                         <FormControl>
-                                            <Input {...field} />
+                                            <Input type='number' {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
-                        )} */}
+                        )}
                         {submittedFields === 3 && (
                             <FormField
                                 control={form.control}
