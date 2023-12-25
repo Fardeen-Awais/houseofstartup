@@ -54,10 +54,10 @@ const BrowseCategoryDesktop = ({ category }: CategoryProps) => {
             
             <ScrollArea className='flex sm:h-[500px] sm:w-[295px] justify-center items-center '>
                 {category.map((category) => (
-                    <div className='flex flex-col justify-center items-center py-10 px-3 mx-auto'>
+                    <div className='flex flex-col justify-start items-start p-3 mx-auto'>
                         {category.services.map((service) => (
                             <TabsContent className='flex flex-col gap-y-10 items-center justify-center' value={service.categoryId}>
-                               <Link href={`/survey/${service.name}`}><Button variant={'outline'} className='w-full p-20'>{service.name}</Button></Link>
+                               <Link href={`/survey/${service.name}`}><Button variant={'outline'} className='w-60 p-20'>{service.name}</Button></Link>
                             </TabsContent>
                         ))}
                     </div>

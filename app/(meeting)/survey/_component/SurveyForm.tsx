@@ -6,14 +6,13 @@ import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
 
-import { Autocomplete, AutocompleteItem, Avatar, Input, Progress } from '@nextui-org/react';
+import { Autocomplete, AutocompleteItem, Avatar, Progress } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { budget, businessTypes, countries, projectTypes } from '@/constant';
@@ -21,14 +20,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 const formSchema = z.object({
     location: z.string().min(2).max(50),
-    budget: z.coerce.number().min(0).max(20000),
+    budget: z.string().min(1),
     businessType: z.string().min(2).max(50),
     projectType: z.string().min(2).max(50),
     website: z.string().min(2).max(50),
 });
 
-const SurveyForm = () => {
-    const [IsSubmitted, setSubmit] = useState(false);
+const SurveyForm = ({service}: {service: string}) => {
     const [submittedFields, setSubmitField] = useState(0);
 
     const requiredFields = Object.keys(formSchema.shape).length
@@ -38,7 +36,7 @@ const SurveyForm = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             location: '',
-            budget: 0,
+            budget: '',
             businessType: '',
             projectType: '',
             website: ''
@@ -49,7 +47,6 @@ const SurveyForm = () => {
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values);
         toast.success("Congratulation you Submitted the form 🎉🍾🎊");
-        setSubmit(true);
     }
 
     return (
@@ -59,12 +56,10 @@ const SurveyForm = () => {
                     <p>Progress {submittedFields}/{requiredFields}</p>
                     <Progress color={submitionRate === 100 ? 'success' : 'warning'} aria-label="Loading..." value={submitionRate} />
                 </div>
-                {/* {submittedFields === 0 && ( */}
-                <div className='flex flex-col max-w-sm'>
-                    <h3>Fill the form for Service</h3>
+                <div className='flex flex-col max-w-md'>
+                    <h3>You selected: {service}</h3>
                     <p>This form help us to know each other in general 😍 and save time ⌛</p>
                 </div>
-                {/* )} */}
             </div>
             <div className='flex w-full'>
                 <Form {...form}>
@@ -113,7 +108,6 @@ const SurveyForm = () => {
                                                     <AutocompleteItem
                                                         key={country.name}
                                                         value={country.name}
-                                                        startContent={<Avatar alt={country.code} className="w-6 h-6" src={`https://flagcdn.com/${country.code}.svg`} />}
                                                     >
                                                         {country.name}
                                                     </AutocompleteItem>
@@ -225,6 +219,9 @@ const SurveyForm = () => {
                         )}
                         {submittedFields === requiredFields && (
                             <div className='flex flex-col gap-2'>
+                                <Button className='border-2 border-green-500 hover:border-blue-500 transition-all' type="submit" onClick={() => { (!formState.isValid) ? toast.error("Please go back and fill all fields") : onSubmit(form.getValues()) }}>
+                                    Submit
+                                </Button>
                                 <Button
                                     className='w-full'
                                     type="button"
@@ -235,9 +232,8 @@ const SurveyForm = () => {
                                 >
                                     Back
                                 </Button>
-                                <Button className='border-2 border-green-500 hover:border-blue-500 transition-all' type="submit" onClick={() => onSubmit(form.getValues())}>
-                                    Submit
-                                </Button>
+                                {/* {(!formState.isValid)?<p className='text-red-500 text-sm'>Please fill all fields</p>:''} */}
+
 
                             </div>
                         )}

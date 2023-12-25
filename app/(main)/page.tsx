@@ -4,12 +4,12 @@ import Storyline from '@/app/(main)/_components/Storyline';
 import Service from '@/app/(main)/_components/Service';
 import Process from '@/app/(main)/_components/Process';
 import CustomerFeedback from '@/components/CustomerFeedback';
+import { homeProfile } from '@/lib/home-profile';
 
 export default async function Home() {
+  const profile = await homeProfile();
   return (
     <main className='bg-background text-foreground overflow-hidden min-h-screen'>
-        {/* {profile.name} */}
-        {/* <p className='px-3'>{profile.email}</p> */}
         <Hero />
         <Storyline />
         <Service />
