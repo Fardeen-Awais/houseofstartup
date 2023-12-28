@@ -10,7 +10,6 @@ const page = async() => {
         services: false
     }
 });
-  console.log(category)
   return (
     <div className='flex flex-col min-h-screen justify-center items-center max-w-7xl mx-auto gap-5 p-5'>
       <ServiceForm category={category}/>    

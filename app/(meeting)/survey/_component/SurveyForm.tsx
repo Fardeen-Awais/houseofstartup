@@ -1,6 +1,7 @@
 'use client'
-import React, { useState } from 'react';
 import * as z from "zod";
+import axios from "axios";
+import React, { useState } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,21 +13,23 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 
-import { Autocomplete, AutocompleteItem, Avatar, Progress } from '@nextui-org/react';
+import { Autocomplete, AutocompleteItem, Progress } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { budget, businessTypes, countries, projectTypes } from '@/constant';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
     location: z.string().min(2).max(50),
     budget: z.string().min(1),
-    businessType: z.string().min(2).max(50),
+    business: z.string().min(2).max(50),
     projectType: z.string().min(2).max(50),
     website: z.string().min(2).max(50),
 });
 
-const SurveyForm = ({service}: {service: string}) => {
+const SurveyForm = ({ service }: { service: string }) => {
+    const router = useRouter()
     const [submittedFields, setSubmitField] = useState(0);
 
     const requiredFields = Object.keys(formSchema.shape).length
@@ -37,16 +40,29 @@ const SurveyForm = ({service}: {service: string}) => {
         defaultValues: {
             location: '',
             budget: '',
-            businessType: '',
+            business: '',
             projectType: '',
-            website: ''
+            website: '',
         },
     });
     const formState = form.formState;
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values);
-        toast.success("Congratulation you Submitted the form 🎉🍾🎊");
+    const onSubmit = async(values: z.infer<typeof formSchema>)=> {
+        try{
+            console.log({values})
+            const response = await axios.post('/api/survey',{
+                business: values.business,
+                location: values.location,
+                budget: parseInt(values.budget), 
+                projectType: values.projectType,
+                website: values.website,       
+            }) 
+            toast.success("Course created");
+            form.reset()
+            router.push(`/contact`)
+        } catch(error) {
+            toast.error("Something went wrong! Make sure to fill all fields");
+        }
     }
 
     return (
@@ -102,12 +118,12 @@ const SurveyForm = ({service}: {service: string}) => {
                                                 className="max-w-xs"
                                                 onSelectionChange={field.onChange}
                                                 defaultItems={countries}
-                                                datatype='number'
                                             >
                                                 {countries.map((country) => (
                                                     <AutocompleteItem
                                                         key={country.name}
-                                                        value={country.name}
+                                                        value={country.code}
+                                                        
                                                     >
                                                         {country.name}
                                                     </AutocompleteItem>
@@ -152,7 +168,7 @@ const SurveyForm = ({service}: {service: string}) => {
                         {submittedFields === 3 && (
                             <FormField
                                 control={form.control}
-                                name="businessType"
+                                name="business"
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Select your Business type</FormLabel>
@@ -232,9 +248,6 @@ const SurveyForm = ({service}: {service: string}) => {
                                 >
                                     Back
                                 </Button>
-                                {/* {(!formState.isValid)?<p className='text-red-500 text-sm'>Please fill all fields</p>:''} */}
-
-
                             </div>
                         )}
                     </form>
