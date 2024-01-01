@@ -8,16 +8,18 @@ export async function POST(req: Request) {
         if(!profile) return new NextResponse("Unauthorized", { status: 401 })
 
         const {userId} = profile
-        const {location, budget, business, website , projectType} = await req.json()
+        const {id,location, budget, business, website , projectType , categoryName} = await req.json()
 
-        const survey = await db.userSurvey.create({
+        const survey = await db.userSurvey.createMany({
             data: {
-               id: userId,
+               id: id,
+               userId: userId,
                location: location,
                budget: budget,
                business: business,
                website: website,
                projectType: projectType,
+               categoryName: categoryName,
             }
         })
         return NextResponse.json(survey)

@@ -28,7 +28,7 @@ const formSchema = z.object({
     website: z.string().min(2).max(50),
 });
 
-const SurveyForm = ({ service }: { service: string }) => {
+const SurveyForm = ({ category }: { category: string }) => {
     const router = useRouter()
     const [submittedFields, setSubmitField] = useState(0);
 
@@ -55,7 +55,8 @@ const SurveyForm = ({ service }: { service: string }) => {
                 location: values.location,
                 budget: parseInt(values.budget), 
                 projectType: values.projectType,
-                website: values.website,       
+                website: values.website,
+                categoryName: category,       
             }) 
             toast.success("Course created");
             form.reset()
@@ -73,8 +74,8 @@ const SurveyForm = ({ service }: { service: string }) => {
                     <Progress color={submitionRate === 100 ? 'success' : 'warning'} aria-label="Loading..." value={submitionRate} />
                 </div>
                 <div className='flex flex-col max-w-md'>
-                    <h3>You selected: {service}</h3>
-                    <p>This form help us to know each other in general 😍 and save time ⌛</p>
+                    <h3>You selected: {category}</h3>
+                    <p>This form help us to know each other in general 😍 and our save time ⌛</p>
                 </div>
             </div>
             <div className='flex w-full'>

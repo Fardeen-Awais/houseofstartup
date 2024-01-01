@@ -6,7 +6,11 @@ async function main() {
     try {
         // await db.category.createMany({
         //     data:[
-        //         { name: "Web Development", },
+        //         { name: "Website developement" },
+        //         { name: "App developement" },
+        //         { name: "Copy Writing" },
+        //         { name: "Social Media Marketing" },
+        //         { name: "SEO Optimization" },
         //     ]
         // });
 
@@ -14,28 +18,28 @@ async function main() {
         const servicesData = [
             {
                 name: 'Web Design',
-                desc: 'Creating visually appealing and user-friendly web designs',
-                categoryId: '3ee6d746-95f9-45f3-9cf3-eefd8bac859c',
+                desc: 'Creating Visually appealing web app designs',
+                categoryId: '30db3ef9-2a34-41eb-ac4d-6c8d863e3a29',
             },
             {
                 name: '3d Web apps',
-                desc: 'Building web applications using modern technologies',
-                categoryId: '3ee6d746-95f9-45f3-9cf3-eefd8bac859c',
+                desc: 'Make your web app with 3d models using three.js',
+                categoryId: '30db3ef9-2a34-41eb-ac4d-6c8d863e3a29',
             },
             {
                 name: 'Web SEO',
-                desc: 'Building web applications using modern technologies',
-                categoryId: '3ee6d746-95f9-45f3-9cf3-eefd8bac859c',
+                desc: 'Rank and optimize your on-page SEO using SEO tools',
+                categoryId: '30db3ef9-2a34-41eb-ac4d-6c8d863e3a29',
             },
             {
                 name: 'Web app Animations',
-                desc: 'Building web applications using modern technologies',
-                categoryId: '3ee6d746-95f9-45f3-9cf3-eefd8bac859c',
+                desc: 'Help you to build rive animations for your web app',
+                categoryId: '30db3ef9-2a34-41eb-ac4d-6c8d863e3a29',
             },
             {
                 name: 'Next.js Full stack apps',
                 desc: 'Building web applications using modern technologies',
-                categoryId: '3ee6d746-95f9-45f3-9cf3-eefd8bac859c',
+                categoryId: '30db3ef9-2a34-41eb-ac4d-6c8d863e3a29',
             },
         ];
 

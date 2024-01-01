@@ -12,7 +12,7 @@ const page = async({ params }: { params: { slug: string } }) => {
   return (
     <div className='flex flex-col min-h-screen justify-center items-center max-w-7xl mx-auto gap-5 p-5'>
       <div className='border border-gray-900 border-spacing-5 p-10 rounded-lg'>
-          <SurveyForm service={userSelectedService}/> {/* Instead of rendering this ask the service and return them into the slug  */}
+          <SurveyForm category={userSelectedService}/> {/* Instead of rendering this ask the service and return them into the slug  */}
       </div>
     </div>
   )

@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation"
 
 
 const formSchema = z.object({
-  service: z.string().min(2).max(50),
+  category: z.string().min(2).max(50),
 })
 
 const ServiceForm = ({ category }: any) => {
@@ -18,12 +18,12 @@ const ServiceForm = ({ category }: any) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      service: "",
+      category: "",
     },
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    router.push(`/survey/${values.service}`)
+    router.push(`/survey/${values.category}`)
   }
   return (
     <div className='border border-gray-900 border-spacing-5 p-10 rounded-lg flex flex-col justify-start items-start gap-5 w-96 h-96'>
@@ -35,7 +35,7 @@ const ServiceForm = ({ category }: any) => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
           <FormField
             control={form.control}
-            name="service"
+            name="category"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
@@ -46,7 +46,7 @@ const ServiceForm = ({ category }: any) => {
                     {...field}
                   >
                     {category.map((category: any) => (
-                      <SelectItem key={category.id} value={category.id}>
+                      <SelectItem key={category.name} value={category.name}>
                         {category.name}
                       </SelectItem>
                     ))}

@@ -1,55 +1,50 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
-model Profile{
-  id String @id @default(uuid())
-  userId String @unique
-  name String
-  email String
-  imageUrl String @db.Text
-
+model Profile {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  name      String
+  email     String
+  imageUrl  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Category{
-  id String @id @default(uuid())
-  name String @unique
-  services Service[]
+model Category {
+  id          String       @id @default(uuid())
+  name        String       @unique
+  services    Service[]
+  userSurveys UserSurvey[]
 }
 
-model Service{
-  id String @id @default(uuid())
-  name String
-  desc String? @db.Text
+model Service {
+  id         String    @id @default(uuid())
+  name       String
+  desc       String?
   categoryId String?
-  category Category? @relation(fields: [categoryId], references: [id])
-  userSurveys UserSurvey[]
+  category   Category? @relation(fields: [categoryId], references: [id])
 
   @@index([categoryId])
 }
 
-model UserSurvey{
-  id String @id @default(uuid())
-  location String
-  budget Int
-  business String
-  website String
+model UserSurvey {
+  id          String    @id @default(uuid())
+  userId      String
+  location    String
+  budget      Int
+  business    String
+  website     String
   projectType String
-  
-  serviceId String?
-  service Service? @relation(fields: [serviceId], references: [id])
+  categoryName  String?
+  category    Category? @relation(fields: [categoryName], references: [name])
 
-  @@index([serviceId])
+  @@index([categoryName])
 }
-
