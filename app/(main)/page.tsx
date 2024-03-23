@@ -1,20 +1,16 @@
-import React, { Suspense } from 'react';
-import Hero from '@/app/(main)/_components/Hero';
-import Storyline from '@/app/(main)/_components/Storyline';
-import Service from '@/app/(main)/_components/Service';
-import Process from '@/app/(main)/_components/Process';
-import CustomerFeedback from '@/components/CustomerFeedback';
-import { homeProfile } from '@/lib/home-profile';
+import { Button } from '@/components/ui/button';
+import React from 'react'
 
 export default async function Home() {
-  const profile = await homeProfile();
+
   return (
-    <main className='bg-background text-foreground overflow-hidden min-h-screen'>
-        <Hero />
-        <Storyline />
-        <Service />
-        <Process/>
-        <CustomerFeedback/>
-    </main>
+    <>
+    <div className='flex flex-col items-center gap-5'>
+      <h1 className='h1'>A new version of website is in developement......</h1>
+      <Button className='w-full' size={"lg"} variant="default">Zabardast</Button>
+      <span className='text-secondary '>Zabardast hogya</span>
+      </div>
+    </>
   );
 }
+
