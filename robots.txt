@@ -1,0 +1,4 @@
+Sitemap: https://houseofstartup.com/sitemap.xml
+
+User-agent: *
+Disallow: /api
