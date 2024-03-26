@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Suspense } from "react";
 import NextUIProviders from "@/lib/providers/NextUI-Provider";
 import { GeistSans } from "geist/font/sans";
+import Nav from "@/components/layout/nav";
 
 export default async function RootLayout({
   children,
@@ -15,7 +16,7 @@ export default async function RootLayout({
         <NextUIProviders>
           <div className="" />
           <Suspense fallback="...">
-            {/* <Nav /> */}
+            <Nav />
           </Suspense>
           <main className="flex min-h-screen w-full flex-col items-center justify-center py-32 ">
             {children}
