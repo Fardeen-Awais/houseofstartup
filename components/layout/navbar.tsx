@@ -1,45 +1,19 @@
-"use client";
+import { Button } from "../ui/button";
+import Logo from "./Logo";
+import Navigation from './navigation';
 
-import Image from "next/image";
-import Link from "next/link";
-import useScroll from "@/lib/hooks/use-scroll";
-import { Session } from "next-auth";
-
-export default function NavBar({ session }: { session: Session | null }) {
-  const scrolled = useScroll(10);
-
-  return (
-    <>
-      <div
-        className={`fixed top-0 w-full flex justify-center ${
-          scrolled
-            ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
-            : "bg-white/0"
-        } z-30 transition-all`}
-      >
-        <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between w-full">
-          <Link href="/" className="flex items-center font-display text-2xl">
-            <Image
-              src="/logo.png"
-              alt="Precedent logo"
-              width="30"
-              height="30"
-              className="mr-2 rounded-sm"
-            ></Image>
-          </Link>
-          <div>
-            {session ? (
-              ''
-            ) : (
-              <button
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black bg-current"
-              >
-                Sign In
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-    </>
-  );
+const Navbar = () => {
+    return (
+        <header className='sticky top-0 z-20 border-b border-transparent bg-opacity-80 backdrop-blur-[4px] backdrop-filter transition-opacity duration-200 ease-in-out mx-auto px-5 h-20 flex items-center justify-between'>
+            <nav className='flex justify-between items-center w-full'>
+                <Logo />
+                <Navigation/>
+                <div>
+                    <Button className="rounded-3xl bg-[#edededed]">Get started</Button>
+                </div>
+            </nav>
+        </header>
+    )
 }
+
+export default Navbar;
